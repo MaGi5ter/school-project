@@ -23,56 +23,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Document</title>
-
-    <style>
-        body {
-            background: rgb(80, 77, 77);
-        }
-        .container {
-            background: grey;
-            width: 300px;
-            margin-left: auto;
-            margin-right: auto;
-            text-align: center;
-            height: 100px;
-            padding-top: 50px;
-        }
-
-        .forms {
-          overflow: hidden;
-          width: 100%;
-          margin-left: auto;
-          margin-right: auto;
-          border: solid 1px;
-        }
-
-        .add {
-          background: grey;
-          float: left;
-          margin: 40px;
-          padding: 20px;
-        }
-
-        table, th, td {
-          border: solid 1px;
-          border-collapse: collapse;
-          padding: 10px;
-        }
-
-        .tabelka {
-          width: 700px;
-          background:grey;
-          padding: 50px;
-          margin-left: auto;
-          margin-right: auto;
-          margin-top: 50px;
-        }
-
-
-
-    </style>
+    <link rel="stylesheet" href="admin.css">
+    <title>Admin Panel</title>
 </head>
 <body>
 
@@ -137,6 +89,7 @@
   </div>
 
   <div class="tabelka">
+          <h3><b>LISTA KONT I EDYCJA ICH</b></h3>
       <table>
         <tr>
           <th>ID</th>
@@ -145,7 +98,8 @@
           <th>PESEL</th>
           <th>E-Mail</th>
           <th>Data rozpoczęcia Nauki</th>
-        </tr>
+          <th>Edytuj</th>
+        </tr> 
         <?php
 
           $sql = "SELECT * FROM users_data";
@@ -154,7 +108,9 @@
           while($row = $result->fetch_assoc()) {
             echo "<tr> <th>{$row['ID']}</th> <th>{$row['name']}</th>  
             <th>{$row['surname']}</th> <th>{$row['pesel']}</th>
-            <th>{$row['email']}</th> <th>{$row['start_date']}</th> </tr>";
+            <th>{$row['email']}</th> <th>{$row['start_date']}</th> 
+            <th><a href='/stronka_/edit.php?name={$row['name']}&surname={$row['surname']}&pesel={$row['pesel']}&email={$row['email']}&start_date={$row['start_date']}&id={$row['ID']}'>tu edytuj</a></th>
+            </tr>";
           }
         ?>
       </table>
