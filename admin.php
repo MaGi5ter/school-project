@@ -22,6 +22,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Done by MaGi5ter#0411">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="admin.css">
     <title>Admin Panel</title>
@@ -64,16 +65,16 @@
       <select name="id" id="del">
         <option value="0">|--------------------|</option>
         <?php
-          /*#####*/  //MYSQL
-          /*#####*/  $servername = "localhost";
-          /*#####*/  $username = "root";
-          /*#####*/  $password = "";
-          /*#####*/  $dbname = "administracja";
+          /*##Ł##*/  //MYSQL
+          /*##A##*/  $servername = "localhost";
+          /*##T##*/  $username = "root";
+          /*##W##*/  $password = "";
+          /*##O##*/  $dbname = "administracja";
           /*#####*/  
-          /*#####*/  $conn = new mysqli($servername, $username, $password, $dbname);
-          /*#####*/  if ($conn->connect_error) {
-          /*#####*/    die("Connection failed: " . $conn->connect_error);
-          /*#####*/  }
+          /*##0##*/  $conn = new mysqli($servername, $username, $password, $dbname);
+          /*##4##*/  if ($conn->connect_error) {
+          /*##1##*/    die("Connection failed: " . $conn->connect_error);
+          /*##1##*/  }
           /*#####*/  //MYSQL
           $sql = "SELECT * FROM users_data";
           $result = $conn->query($sql);

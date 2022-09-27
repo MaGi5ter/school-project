@@ -1,0 +1,41 @@
+body {
+    background: rgb(80, 77, 77);
+}
+.container {
+    background: grey;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    min-height: 100px;
+    padding-top: 20px;
+    padding-bottom: 30px;
+}
+
+.top {
+    padding: 0;
+    margin: 0;
+}
+
+.twoje_dane {
+    border-top: 1px solid;
+}
+
+.twoje_dane_po_lewo_byc_maja{
+    text-align: left;
+    padding-left: 50px;
+}
+
+.nizej_niz_top {
+    border-top: 1px solid;
+    padding-bottom: 30px;
+}
+
+.kwadracik {
+    background: #0ad5645c;
+    width: 100%;
+}
+
+.tu_haselo_mozesz_zmienic {
+    border-top: 1px solid;
+}
