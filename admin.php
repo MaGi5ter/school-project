@@ -4,6 +4,31 @@
   {
     if($_SESSION['admin'] == 1)
     {
+      //MYSQL
+      $servername = "localhost";
+      $username = "root";
+      $password = "";
+      $dbname = "administracja";
+      
+      $conn = new mysqli($servername, $username, $password, $dbname);
+      if ($conn->connect_error) {
+      die("Connection failed: " . $conn->connect_error);
+      }
+      //MYSQL
+
+      $sql = "SELECT * FROM users WHERE ID = '{$_SESSION['user_id']}'";
+            $result = $conn->query($sql);
+
+            while($row = $result->fetch_assoc()) {
+                $login = $row['login'];
+            }
+
+      $sql1 = "SELECT * FROM users_data WHERE ID = '{$_SESSION['user_id']}'";
+      $wyniki = $conn->query($sql1);
+
+      while($row = $wyniki->fetch_assoc()) {
+        $image = $row['path'];
+    }
       
     }
     else
@@ -29,9 +54,27 @@
 </head>
 <body>
 
-    <div class="container">
-      <h1> Witaj <?php echo $_SESSION['username'];?></h1>
-    </div>
+<a id='button' href="gallery.php">
+  GALERIA
+</a>
+<a id='button2' href="logout.php">
+  LOGOUT
+</a>
+
+<div class = 'top'>
+            <div class='text-top'>
+                <h1>WITAJ</h1>
+                <?php
+                echo "<h2>$login</h2>";
+                ?>
+            </div>
+            <?php
+                echo "
+                <div class='image-top' style='background-image: url($image);'>
+                </div>  
+                ";
+            ?>
+        </div>
 
   <div class="forms">
     <div class="add">
@@ -65,17 +108,7 @@
       <select name="id" id="del">
         <option value="0">|--------------------|</option>
         <?php
-          /*##Ł##*/  //MYSQL
-          /*##A##*/  $servername = "localhost";
-          /*##T##*/  $username = "root";
-          /*##W##*/  $password = "";
-          /*##O##*/  $dbname = "administracja";
-          /*#####*/  
-          /*##0##*/  $conn = new mysqli($servername, $username, $password, $dbname);
-          /*##4##*/  if ($conn->connect_error) {
-          /*##1##*/    die("Connection failed: " . $conn->connect_error);
-          /*##1##*/  }
-          /*#####*/  //MYSQL
+          
           $sql = "SELECT * FROM users_data";
           $result = $conn->query($sql);
 
@@ -87,6 +120,20 @@
       <input type="submit" value="Usuń">
       </form> 
     </div>
+
+    <div class = "add">
+
+      <h2> Dodaj / Edytuj swoje zdjęcie</h2>
+        <?php
+          echo "
+            <form action='upload.php?id={$_SESSION['user_id']}' method='post' enctype='multipart/form-data'> 
+            ";
+          ?>
+        <input id="file" name="file" type="file" />
+        <input id="Submit" name="submit" type="submit" value="Submit" />
+        </form>
+    </div>
+
   </div>
 
   <div class="tabelka">

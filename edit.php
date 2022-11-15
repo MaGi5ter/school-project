@@ -58,10 +58,12 @@
         
             $sql2 ="UPDATE users_data SET `name` = '$name' , `surname` = '$surname' , `email` = '$email' , `start_date` = '$date', `pesel` = '$pesel' WHERE ID = '$id' ";
         
+            ;mysqli_set_charset($conn,"utf8"); $log = "INSERT INTO `log` (`user`, `action`) VALUES ('{$_SESSION['user_id']}', 'zaktualizował dane usera $id na name $name surname = $surname , email = $email start_date = $date pesel = $pesel ');"; $conn->query($log);
+
             $conn->query($sql);
             $conn->query($sql2);
 
-            header('Location: /stronka_/admin.php');
+           // header('Location: /stronka_/admin.php');
         }
     }
     else

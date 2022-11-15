@@ -36,6 +36,7 @@
                 $email = $row['email'];
                 $pesel = $row['pesel'];
                 $data = $row['start_date'];
+                $image = $row['path'];
             }
         }
     }
@@ -56,11 +57,27 @@
     <title>Witaj user</title>
 </head>
 <body>
+
+    <a id='button' href="gallery.php">
+         GALERIA
+    </a>
+    <a id='button2' href="logout.php">
+         LOGOUT
+    </a>
+
     <div class='container'>
         <div class = 'top'>
-            <h1>WITAJ KOLEGO</h1>
+            <div class='text-top'>
+                <h1>WITAJ UŻYTKOWNIKU</h1>
+                <?php
+                echo "<h2>$login</h2>";
+                ?>
+            </div>
             <?php
-            echo "<h2>$login</h2>";
+                echo "
+                <div class='image-top' style='background-image: url($image);'>
+                </div>  
+                ";
             ?>
         </div>
 
@@ -86,7 +103,6 @@
                 <form action='user.php' method='post'>
                     <h2>Tu możesz edytować twoje dane</h2>
 
-                    Nie możesz edytować PESELU i daty, bo to się nie zmienia przecież :D <br><br>
                     Imie
                     <input type='text' name='edit_name' value = '$imie' required><br>
                     Nazwisko
@@ -122,10 +138,34 @@
             
         </div>
 
+        <div class = "edit-zdj">
+
+                <h2> Dodaj / Edytuj swoje zdjęcie</h2>
+                <?php
+                    echo "
+                    <form action='upload.php?id={$_SESSION['user_id']}' method='post' enctype='multipart/form-data'> 
+                    ";
+                ?>
+                <input id="file" name="file" type="file" />
+                <input id="Submit" name="submit" type="submit" value="Submit" />
+                </form>
+        </div>
+
+        <div class = "hmm">
+
+                <h2>Usun Konto</h2>
+<?php
+echo " <form action='delete.php?id={$_SESSION['user_id']}' method='post'>"
+?>
+            <input type="submit" value="Usuń">
+        </form> 
+
+        </div>
+
         <div class = 'tu_haselo_mozesz_zmienic'>
                 <h2>Tu możesz zmienić hasło</h2>
 
-                <form action='user.php' method='post'>
+                <form action='pwd_e.php' method='post'>
                     Podaj nowe hasło
                     <input type='text' name='edit_pwd1'  required><br>
                     Potwierdź hasło
@@ -133,6 +173,7 @@
                     <input type='submit' value='ZAPISZ'>
                 </form>
         </div>
+
     </div>
 </body>
 </html>

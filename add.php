@@ -13,7 +13,7 @@
       /*#####*/  $conn = new mysqli($servername, $username, $password, $dbname);
       /*#####*/  if ($conn->connect_error) {
       /*#####*/    die("Connection failed: " . $conn->connect_error);
-      /*#####*/  }
+      /*#####*/  } 
       /*#####*/  //MYSQL
 
       $login = $_POST['login'];
@@ -37,6 +37,9 @@
       $sql = "INSERT INTO `users_data`(`ID`, `name`, `surname`, `email`, `pesel`, `start_date`) VALUES ('$id','$name','$surname','$email','$pesel','$date')";
       echo $sql;
       $result = $conn->query($sql);
+
+      ;mysqli_set_charset($conn,"utf8"); $log = "INSERT INTO `log` (`user`, `action`) VALUES ('{$_SESSION['user_id']}', 'Utworzyl usera $login');"; $conn->query($log);
+
 
       header('Location: /stronka_/admin.php');
 

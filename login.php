@@ -12,11 +12,12 @@ $passwd = $_POST['passwd'];
 /*#####*/  $conn = new mysqli($servername, $username, $password, $dbname);
 /*#####*/  if ($conn->connect_error) {
 /*#####*/    die("Connection failed: " . $conn->connect_error);
-/*#####*/  }
+/*#####*/  }  ;mysqli_set_charset($conn,"utf8");
 /*#####*/  //MYSQL
 
 $sql = "SELECT * FROM users WHERE login = '$login' AND passwd = '$passwd'";
 $result = $conn->query($sql);
+
 
 if ($result->num_rows > 0) {
   session_start();
@@ -35,6 +36,7 @@ if ($result->num_rows > 0) {
     $_SESSION['username'] = $login;
     $_SESSION['status']=true; //1
 
+    $log = "INSERT INTO `log` (`user`, `action`) VALUES ('{$_SESSION['user_id']}', 'Zalogował sie');"; $conn->query($log);
 
     if($_SESSION['admin'] == 1)
     {
