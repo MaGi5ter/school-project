@@ -1,3 +1,3 @@
 # school-project
 
-i hate php
+The simple project that I was working on at school
